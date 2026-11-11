@@ -1,0 +1,26 @@
+name: Publicar versión
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Armar el ZIP del skill
+        run: scripts/empaquetar.sh
+
+      - name: Revisar que SKILL.md quede dentro de la carpeta
+        run: unzip -l dist/contador-chile.zip | grep -q ' contador-chile/SKILL.md$'
+
+      - name: Crear el release con el ZIP
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/contador-chile.zip --title "$GITHUB_REF_NAME" --generate-notes

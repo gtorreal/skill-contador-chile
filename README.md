@@ -8,7 +8,28 @@ Cubre Pro Pyme (14 D N°3 y N°8) y régimen general (14 A); IVA, PPM, boletas d
 
 ## Instalación
 
-Clona el repo y enlaza la carpeta `contador/`, que es el skill, en la carpeta de skills de tu herramienta:
+Primero baja `contador-chile.zip` desde la última versión: https://github.com/gtorreal/skill-contador-chile/releases/latest (en «Assets»). Ese archivo es el skill completo.
+
+### En Claude, en la web o en la app de escritorio
+
+1. En Settings > Capabilities, activa «Create and edit files» (en la versión anterior de la configuración se llama «Code execution and file creation»).
+2. Ve a Customize > Skills, presiona «+», después «+ Create skill» y elige «Upload a skill».
+3. Sube `contador-chile.zip` tal como lo bajaste, sin descomprimirlo.
+
+El skill queda en tu lista y lo puedes activar o desactivar. Según la ayuda de Claude, se puede en los planes Free, Pro, Max y Ultra; en Team y Enterprise, si la organización no desactivó los skills creados por usuarios. Los menús están en inglés en la ayuda oficial y pueden cambiar: https://support.claude.com/en/articles/12512180-use-skills-in-claude. Para actualizarlo, baja el ZIP de la versión nueva y vuelve a subirlo.
+
+### En Claude Code (Mac, Linux o Windows)
+
+Descomprime `contador-chile.zip` dentro de la carpeta de skills de tu usuario, de modo que quede `.claude/skills/contador-chile/SKILL.md`:
+
+- Mac y Linux: `~/.claude/skills/`
+- Windows: `%USERPROFILE%\.claude\skills\`
+
+Para actualizarlo, borra esa carpeta y descomprime el ZIP de la versión nueva.
+
+### Si usas Git
+
+Para tener siempre la última versión del repositorio (Mac o Linux):
 
 ```bash
 git clone https://github.com/gtorreal/skill-contador-chile.git ~/skill-contador-chile
@@ -22,7 +43,7 @@ Para actualizarlo, `git pull` en esa carpeta.
 
 ## Cómo se empieza
 
-Abre una conversación en una carpeta de trabajo para tu empresa y dile:
+Abre una conversación (en Claude Code, en una carpeta de trabajo para tu empresa) y dile:
 
 > Armemos la ficha de mi empresa.
 

@@ -13,6 +13,8 @@ skill-contador-chile — un skill para agentes de IA que hace de **contador comp
 - `docs/CONTEXTO.md` — estado del proyecto. `docs/PENDIENTES.md` — fases y decisiones abiertas.
 - `casos/` — los casos de prueba (fase 3; todavía no existe).
 - `README.md` — para personas: qué es, cómo se instala, cómo se empieza, qué no hace.
+- `scripts/empaquetar.sh` — arma `dist/contador-chile.zip` (fuera de git) con la carpeta del skill en el nivel superior y llamada igual que el `name` de `SKILL.md`, como lo exige la subida de skills en Claude.
+- `.github/workflows/publicar-version.yml` — al empujar una etiqueta `v*`, arma el ZIP, revisa que `SKILL.md` quede dentro de la carpeta y crea el release con el ZIP adjunto.
 
 ## Instalar para probar
 
@@ -21,6 +23,16 @@ Desde la raíz del repositorio:
 ```bash
 ln -s "$PWD/contador" ~/.claude/skills/contador-chile
 ```
+
+## Publicar una versión
+
+Con `main` al día y revisado (sin datos reales ni rutas locales), desde la raíz:
+
+```bash
+git tag v0.2.0 && git push origin v0.2.0
+```
+
+GitHub Actions crea el release con `contador-chile.zip`. Versiones: el segundo número sube con una fase o una guía nueva; el tercero, con correcciones. Para probar el ZIP sin publicar: `scripts/empaquetar.sh`.
 
 No instalarlo en el mismo equipo que otro skill contador (por ejemplo, el privado del repo contabilidad): con los dos, ambos se activan con la misma pregunta.
 
